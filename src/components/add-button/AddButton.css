@@ -1,0 +1,7 @@
+.rotate svg {
+    transform: rotate(45deg);
+}
+.rotate svg,
+.no-rotate svg {
+    transition: transform 0.3s;
+}

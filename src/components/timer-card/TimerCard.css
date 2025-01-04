@@ -1,0 +1,67 @@
+.timer-card {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-align: left;
+    text-decoration: none;
+    color: #222;
+    background-color: #f1f1f1;
+    border: 1px solid transparent;
+}
+
+.timer-card:hover {
+    border: 1px solid #000;
+    box-shadow: 0 25px 50px -12px #033f8d;
+}
+.timer-card {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-align: left;
+    text-decoration: none;
+    color: #222;
+    background-color: #f1f1f1;
+    border: 1px solid transparent;
+}
+
+.timer-card:hover {
+    border: 1px solid #000;
+    box-shadow: 0 25px 50px -12px #033f8d;
+}
+
+@media (prefers-color-scheme: dark) {
+    .timer-card {
+        color: #ccc;
+        background-color: #161616;
+    }
+    .timer-card:hover {
+        border: 1px solid #bbb;
+    }
+}
+
+.timer-card h2 {
+    margin: 0;
+    font-weight: 200;
+    font-size: 1.5rem;
+    padding: 0.3rem 0;
+    flex: 6 0 auto;
+}
+
+.timer-card svg {
+    flex: 1 0 25px;
+}
+
+.timer-card p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: normal;
+    font-weight: 200;
+}
+
+.timer-card .container-lr {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.timer-card .stats {
+    padding-top: 1.5rem;
+}

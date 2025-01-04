@@ -1,0 +1,156 @@
+img {
+    margin-bottom: 1.5rem;
+}
+
+img:hover {
+    filter: drop-shadow(0 0 2em #673ab8aa);
+}
+
+.timer {
+    width: 100%;
+}
+
+.timer section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1.5rem;
+}
+
+.resource {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-align: left;
+    text-decoration: none;
+    color: #222;
+    background-color: #f1f1f1;
+    border: 1px solid transparent;
+}
+
+.resource:hover {
+    border: 1px solid #000;
+    box-shadow: 0 25px 50px -12px #033f8d;
+}
+.resource {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-align: left;
+    text-decoration: none;
+    color: #222;
+    background-color: #f1f1f1;
+    border: 1px solid transparent;
+}
+
+.resource:hover {
+    border: 1px solid #000;
+    box-shadow: 0 25px 50px -12px #033f8d;
+}
+
+@media (max-width: 639px) {
+    .timer section {
+        grid-template-columns: 1fr;
+        row-gap: 1rem;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .resource {
+        color: #ccc;
+        background-color: #161616;
+    }
+    .resource:hover {
+        border: 1px solid #bbb;
+    }
+}
+
+.new-timer-dialog {
+    top: 5rem;
+    width: 80%;
+    height: 70%;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #161616;
+}
+
+.new-timer-dialog .title {
+    font-size: large;
+    border-radius: 0;
+}
+
+.new-timer-dialog .description {
+    /* margin-top: 1rem; */
+    font-size: medium;
+    font-style: italic;
+    border-radius: 0;
+}
+
+.new-timer-dialog .row {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.new-timer-dialog input {
+    padding: 0rem;
+    border-radius: 0.5rem;
+    border: 0px solid #ccc;
+    background-color: #222;
+    color: #ccc;
+    text-align: center;
+    width: 80%;
+    font-size: 1rem;
+    height: 30px;
+}
+
+.new-timer-dialog .row input {
+    width: 20%;
+}
+
+.row button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    height: 30px;
+}
+
+.no-style-button {
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+button,
+input[type='submit'],
+input[type='reset'] {
+    background: none;
+    color: inherit;
+    border: 0;
+    padding: 0.5rem;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.row p {
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+    font-size: 1rem;
+    font-weight: 200;
+}
+
+.loop {
+    border-left: 3px solid white;
+}
+
+.container-lr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
