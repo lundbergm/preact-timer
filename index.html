@@ -15,6 +15,11 @@
         <!-- <meta name="theme-color" content="#021e72" /> -->
         <link rel="apple-touch-startup-image" href="/logo-1080x1080.png" />
 
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;"
+        />
+
         <meta name="description" content="Lundberg" />
         <title>Lundberg</title>
         <!-- <script type="text/javascript">

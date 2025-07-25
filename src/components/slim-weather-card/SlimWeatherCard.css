@@ -1,0 +1,26 @@
+.swc-dash-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    font-size: 32px;
+}
+.swc-weather-icon {
+    width: 63px;
+    height: 63px;
+    margin-bottom: 0;
+}
+.swc-symbol {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.swc-temp {
+    text-align: center;
+    font-size: 42px;
+}
+.swc-precipitation {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1rem;
+}

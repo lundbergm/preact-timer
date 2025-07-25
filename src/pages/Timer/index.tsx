@@ -1,63 +1,60 @@
-import { Dispatch, StateUpdater, useState } from 'preact/hooks';
+import { Dispatch, StateUpdater, useEffect, useState } from 'preact/hooks';
 import { AddButton } from '../../components/add-button/AddButton';
 import { TimerCard } from '../../components/timer-card/TimerCard';
 import './style.css';
-import { Timer as TimerType } from '../../types/timer';
+import { Timer as Timer } from '../../types/timer';
 import { IoIosAddCircleOutline, IoIosRemoveCircleOutline, IoIosTimer, IoMdRepeat, IoMdSave } from 'react-icons/io';
 import { IconType } from 'react-icons';
+import { Nullable } from '../../types/nullable';
+import { Spinner } from '../../components/spinner/Spinner';
+import { addData, getAll, initDB } from '../../storage/db';
+import { v4 as uuidv4 } from 'uuid';
 
-const mockTimers: TimerType[] = [
-    {
-        title: 'Tabata',
-        description: '20 seconds work, 10 seconds rest, 8 cycles',
-        warmUp: 60,
-        coolDown: 60,
-        loops: [
-            {
-                work: 20,
-                rest: 10,
-                cycles: 8,
-                sets: 1,
-                restBetweenSets: 0,
-            },
-        ],
-        restBetweenLoops: 0,
-    },
-    {
-        title: 'Circuit',
-        description: 'A lot of work, a little rest',
-        warmUp: 60,
-        coolDown: 60,
-        loops: [
-            {
-                work: 30,
-                rest: 15,
-                cycles: 4,
-                sets: 3,
-                restBetweenSets: 60,
-            },
-            {
-                work: 50,
-                rest: 10,
-                cycles: 3,
-                sets: 2,
-                restBetweenSets: 20,
-            },
-        ],
-        restBetweenLoops: 60,
-    },
-];
+const defaultTimer: Timer = {
+    id: uuidv4(),
+    title: 'Tabata',
+    description: '20 seconds work, 10 seconds rest, 8 cycles',
+    warmUp: 60,
+    coolDown: 60,
+    loops: [
+        {
+            work: 20,
+            rest: 10,
+            cycles: 8,
+            sets: 1,
+            restBetweenSets: 0,
+        },
+    ],
+    restBetweenLoops: 0,
+};
 
-export function Timer() {
+export function TabataTimer() {
     const [showDialog, setShowDialog] = useState(false);
-    const [timers, setTimers] = useState(mockTimers);
+    const [timers, setTimers] = useState<Nullable<Array<Timer>>>(null);
+    const [editTimer, setEditTimer] = useState<Timer | null>(null);
+
+    useEffect(() => {
+        initDB().then((success) => {
+            getAll<Timer>('timers').then((data) => {
+                setTimers(data);
+            });
+        });
+    }, []);
 
     const handleAddClick = () => {
         setShowDialog((prev) => !prev);
     };
 
-    const handleSubmit = (timer: TimerType) => {
+    const handleSubmit = (timer: Timer) => {
+        if (editTimer) {
+            setTimers((prev) => prev.map((t) => (t === editTimer ? timer : t)));
+            setEditTimer(null);
+            setShowDialog(false);
+            return;
+        }
         setTimers((prev) => [...prev, timer]);
+
+        addData<Object>('timers', timer);
         setShowDialog(false);
     };
 
@@ -65,20 +62,44 @@ export function Timer() {
         setTimers((prev) => prev.filter((_, index) => index !== id));
     };
 
+    const handleEdit = (id: number) => {
+        setEditTimer(timers[id]);
+        setShowDialog(true);
+    };
+
+    if (!timers) {
+        return (
+            <div class="timer">
+                <Spinner />
+            </div>
+        );
+    }
+
     return (
         <div class="timer">
             <section>
                 {!showDialog &&
-                    timers.map((timer, index) => <TimerCard timer={timer} id={index} onDelete={handleDelete} />)}
+                    timers.map((timer, index) => (
+                        <TimerCard timer={timer} id={index} onDelete={handleDelete} onEdit={handleEdit} />
+                    ))}
             </section>
 
             <AddButton onClick={handleAddClick} rotate={!!showDialog} />
-            <AddTimerModal open={showDialog} onSubmit={handleSubmit} />
+            <TimerModal open={showDialog} onSubmit={handleSubmit} timer={editTimer} />
         </div>
     );
 }
 
-function AddTimerModal({ onSubmit, open }: { onSubmit: (timer: TimerType) => void; open: boolean }) {
+function TimerModal({
+    onSubmit,
+    open,
+    timer,
+}: {
+    onSubmit: (timer: Timer) => void;
+    open: boolean;
+    timer: Nullable<Timer>;
+}) {
+    const [timerId, setTimerId] = useState(null);
     const [timerName, setTimerName] = useState('My new timer');
     const [description, setDescription] = useState('description');
     const [warmUp, setWarmUp] = useState('60');
@@ -89,9 +110,32 @@ function AddTimerModal({ onSubmit, open }: { onSubmit: (timer: TimerType) => voi
     const [sets, setSets] = useState('3');
     const [restBetweenSets, setRestBetweenSets] = useState('60');
 
+    useEffect(() => {
+        const tmr = timer || {
+            id: null,
+            title: 'My new timer',
+            description: 'description',
+            warmUp: 60,
+            coolDown: 60,
+            loops: [{ work: 30, rest: 15, cycles: 4, sets: 3, restBetweenSets: 60 }],
+            restBetweenLoops: 0,
+        };
+        setTimerId(tmr.id);
+        setTimerName(tmr.title);
+        setDescription(tmr.description);
+        setWarmUp(tmr.warmUp.toString());
+        setCoolDown(tmr.coolDown.toString());
+        setWork(tmr.loops[0].work.toString());
+        setRest(tmr.loops[0].rest.toString());
+        setCycles(tmr.loops[0].cycles.toString());
+        setSets(tmr.loops[0].sets.toString());
+        setRestBetweenSets(tmr.loops[0].restBetweenSets.toString());
+    }, [open]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const timer: TimerType = {
+        const timer: Timer = {
+            id: timerId || uuidv4(),
             title: timerName,
             description,
             warmUp: parseInt(warmUp),

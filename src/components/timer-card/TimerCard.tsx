@@ -8,8 +8,9 @@ export interface Props {
     timer: Timer;
     id: number;
     onDelete: (id: number) => void;
+    onEdit: (id: number) => void;
 }
-export function TimerCard({ timer, id, onDelete }: Props) {
+export function TimerCard({ timer, id, onDelete, onEdit }: Props) {
     const { title, description } = timer;
     const timerTime = getTimerTime(timer);
     const handleDelete = () => {
@@ -17,6 +18,7 @@ export function TimerCard({ timer, id, onDelete }: Props) {
     };
     const handleEdit = () => {
         console.log('edit');
+        onEdit(id);
     };
 
     return (

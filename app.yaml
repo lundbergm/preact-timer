@@ -1,0 +1,5 @@
+name: home-app
+app_id: da_R9EIBt1UlAzB
+owner: manslundberg1
+package: '.'
+kind: wasmer.io/App.v0

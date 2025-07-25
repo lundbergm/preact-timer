@@ -1,4 +1,6 @@
 export interface Timer {
+    id: string;
+    created;
     title: string;
     description: string;
     warmUp: number;

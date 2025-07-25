@@ -1,0 +1,36 @@
+.wc-when {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+.wc-symbol {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.wc-weather-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0;
+}
+.wc-temp {
+    font-weight: bold;
+    text-align: center;
+}
+.wc-wind {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 26px;
+    img {
+        height: 18px;
+        width: 18px;
+        margin: 2px 2px 0 0;
+    }
+}
+.wc-precipitation {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1rem;
+}

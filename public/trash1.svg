@@ -1,0 +1,15 @@
+<svg width="60" height="60" viewBox="2 4 60 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Soptunna kropp -->
+  <path fill="#fff" d="M16 21 v31 a4 4 0 0 0 4 4 h24 a4 4 0 0 0 4 -4 L48 21  "
+  style="fill:none;stroke:#fff;stroke-width:4" />
+
+  <!-- Lock -->
+  <rect x="12" y="16" width="40" height="6" rx="2" ry="2" stroke="#fff" stroke-width="3"  fill="none"/>
+
+  <!-- Handtag -->
+  <rect x="26" y="10" width="12" height="6" rx="2" ry="2" fill="#fff"/>
+
+
+  <!-- Siffra 1 -->
+  <text x="32" y="48" text-anchor="middle" font-size="28" fill="#fff" font-family="Arial" font-weight="bold">1</text>
+</svg>

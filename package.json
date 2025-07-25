@@ -4,18 +4,22 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "deploy": "npm run build && wasmer deploy"
     },
     "dependencies": {
         "preact": "^10.25.3",
         "preact-iso": "^2.8.1",
-        "react-icons": "^5.4.0"
+        "react-icons": "^5.4.0",
+        "uuid": "^11.0.4"
     },
     "devDependencies": {
         "@preact/preset-vite": "^2.9.3",
+        "@types/node": "^24.0.15",
         "esbuild": "^0.24.0",
         "eslint": "^8.57.1",
         "eslint-config-preact": "^1.5.0",
+        "preact-material-components": "^1.6.1",
         "typescript": "^5.7.2",
         "vite": "^6.0.4"
     },

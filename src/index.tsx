@@ -2,26 +2,27 @@ import { render } from 'preact';
 import { LocationProvider, Router, Route } from 'preact-iso';
 
 import { Header, Page } from './components/header/Header.js';
-import { Home } from './pages/Home/index.jsx';
 import { NotFound } from './pages/_404.jsx';
 import './style.css';
 import { useState } from 'preact/hooks';
-import { Timer } from './pages/Timer/index.js';
+import { TabataTimer } from './pages/Timer/index.js';
 import { StopWatch } from './pages/StopWatch/index.js';
+import { Dash } from './pages/Dash/index.js';
 
 export function App() {
-    const [page, setPage] = useState<Page>('home');
+    console.log('App component rendered');
+    const [page, setPage] = useState<Page>('dash');
 
     let content = null;
     switch (page) {
-        case 'home':
-            content = <Home />;
-            break;
         case 'timer':
-            content = <Timer />;
+            content = <TabataTimer />;
             break;
         case 'stopwatch':
             content = <StopWatch />;
+            break;
+        case 'dash':
+            content = <Dash />;
             break;
         default:
             content = <NotFound />;

@@ -1,0 +1,79 @@
+.dash {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: calc(100vh - 120px);
+    text-align: start;
+}
+
+.dash section {
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem 0rem;
+    box-sizing: border-box;
+}
+
+.border {
+    border-bottom: 1px solid #ccc;
+}
+
+.weekday {
+    justify-content: start;
+    text-align: start;
+    font-size: 22px;
+}
+
+.dash-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 32px;
+}
+
+.forecast-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.bus-table {
+    display: grid;
+    grid-template-columns: 2fr repeat(2, 3fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.bus-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    text-align: center;
+}
+
+.bus-deviation {
+    text-decoration-line: line-through;
+    display: inline-block;
+    width: 50px;
+}
+
+.bus-table-header {
+    font-weight: bold;
+}
+
+.trash-row {
+    display: grid;
+    grid-template-columns: repeat(2, 3fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    img {
+        width: 32px;
+        height: 32px;
+        margin: 0;
+    }
+}
